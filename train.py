@@ -61,7 +61,7 @@ def train(
         os.mkdir(ckpt_path)
 
     history_file = open(history_path, 'w')
-    misc_file = open(misc_path, 'w')
+    misc_file = open(misc_path, 'a')
 
     # Setup model
     model.to(device)
@@ -155,7 +155,7 @@ def train(
                 data_amount = len(loaders[phase].dataset)
                 ob_amount = math.ceil(data_amount / ob_size)
 
-            repeat_iter = tqdm(range(repeat_per_epoch), position=0, desc="Repeat per epoch")
+            repeat_iter = tqdm(range(repeat_per_epoch if phase == "train" else 1), position=0, desc="Repeat per epoch")
             for repeat_index in repeat_iter:
                 current_eb_size = None
                 batch_loss = None
