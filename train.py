@@ -24,9 +24,9 @@ def train(
     repeat_per_epoch=1,
     init_lr=1e-3,
     lr_adjust_ratio=0.5,
-    lr_patience=4,
-    lr_minimum=1e-6,
-    early_stop_patience=12,
+    lr_patience=5,
+    lr_minimum=0,
+    early_stop_patience=20,
     drop_last_train=True,
     drop_last_valid=False,
 ):
@@ -155,7 +155,7 @@ def train(
                 data_amount = len(loaders[phase].dataset)
                 ob_amount = math.ceil(data_amount / ob_size)
 
-            repeat_iter = tqdm(range(repeat_per_epoch if phase == "train" else 1), position=0, desc="Repeat per epoch")
+            repeat_iter = tqdm(range(repeat_per_epoch), position=0, desc="Repeat per epoch")
             for repeat_index in repeat_iter:
                 current_eb_size = None
                 batch_loss = None
@@ -174,7 +174,6 @@ def train(
                     # Set optimizer zero grad and init history if it is start of accumulate gradient
                     if current_eb_data_ran_amount == 0:
                         current_eb_size = min(remain_data_amount, eb_size)
-
                         batch_loss = [0 for _ in range(n_classes)]
                         batch_metric = [0 for _ in range(n_classes)]
                         optimizer.zero_grad()
@@ -186,7 +185,7 @@ def train(
                     preds=model(imgs)
 
                     # Calculate && record loss for one bacth
-                    class_loss = loss_function(gts, preds, n_classes)
+                    class_loss = loss_function(gts, preds)
 
                     loss = class_loss.sum() / n_classes
 
@@ -198,7 +197,7 @@ def train(
                         batch_loss[i] += class_loss.detach().cpu().numpy()[i] * (imgs.shape[0] / current_eb_size)
 
                     # Calculate && record metric for one bacth
-                    class_metric = metric_function(gts, preds, n_classes)
+                    class_metric = metric_function(gts, preds)
 
                     for i in range(n_classes):
                         batch_metric[i] += class_metric.detach().cpu().numpy()[i] * (imgs.shape[0] / current_eb_size)
@@ -227,7 +226,7 @@ def train(
             metric = np.mean(metrics, axis=0)
 
             print(f"mean loss: {np.mean(loss)} | losses: {loss}")
-            print(f"mean metric: {np.mean(metric )} | metrics: {metric}")
+            print(f"mean metric: {np.mean(metric)} | metrics: {metric}")
 
             # Record loss and metric for all batch
             stat[phase]['losses'] = loss
