@@ -1,0 +1,3 @@
+[submodule "models\\CENet\\git_submodule"]
+	path = models\\CENet\\git_submodule
+	url = https://github.com/shampooma/Image_segmentation_framework.git

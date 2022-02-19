@@ -3,7 +3,7 @@ import math
 import torch
 import numpy as np
 
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 
 def train(
     run_name,
@@ -50,7 +50,7 @@ def train(
     }
 
     # Define paths
-    ckpt_path = f"{ckpts_path}/{run_name}_run_{run_id}"
+    ckpt_path = f"{ckpts_path}/{run_name}{run_id}"
     misc_path = f"{ckpt_path}/misc.txt"
     model_train_path = f"{ckpt_path}/model_train.pt"
     model_valid_path = f"{ckpt_path}/model_valid.pt"

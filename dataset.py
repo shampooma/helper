@@ -41,6 +41,7 @@ class Dataset(data.Dataset):
 
         img = cv2.imread(img_path, cv2.IMREAD_GRAYSCALE).astype(np.float)
         gt = cv2.imread(gt_path, cv2.IMREAD_GRAYSCALE)
+        
         # Change gt
         gt[gt==11] = 3
         gt[gt==9] = 2
