@@ -1,6 +1,6 @@
-[submodule "models\\segmenter\\segmenter_git_submodule"]
-	path = models\\segmenter\\segmenter_git_submodule
+[submodule "models/segmenter/segmenter_git_submodule"]
+	path = models/segmenter/segmenter_git_submodule
 	url = https://github.com/shampooma/segmenter.git
-[submodule "models\\CENet\\cenet_git_submodule"]
-	path = models\\CENet\\cenet_git_submodule
+[submodule "models/CENet/cenet_git_submodule"]
+	path = models/CENet/cenet_git_submodule
 	url = https://github.com/shampooma/Image_segmentation_framework.git
