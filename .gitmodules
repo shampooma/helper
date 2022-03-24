@@ -4,3 +4,6 @@
 [submodule "models/CENet/cenet_git_submodule"]
 	path = models/CENet/cenet_git_submodule
 	url = https://github.com/shampooma/Image_segmentation_framework.git
+[submodule "models/HRNet_OCR/hrnetocr_git_submodule"]
+	path = models/HRNet_OCR/hrnetocr_git_submodule
+	url = git@github.com:shampooma/openseg.pytorch.git
