@@ -1,9 +1,9 @@
 # from .git_submodule.segm.utils import distributed
 # import git_submodule.segm.utils.torch as ptu
 
-from .git_submodule.segm.config import load_config
+from .segmenter_git_submodule.segm.config import load_config
 
-from .git_submodule.segm.model.factory import create_segmenter
+from .segmenter_git_submodule.segm.model.factory import create_segmenter
 
 def segmenter(
     img_height,
