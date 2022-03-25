@@ -146,7 +146,7 @@ def hrnet_ocr(config_path="hrnetocr_git_submodule/configs/cityscapes/H_SEGFIX.js
 
   parser.add_argument('REMAIN', nargs='*')
 
-  args_parser = parser.parse_args()
+  args_parser, unknown = parser.parse_known_args()
   configer = Configer(args_parser=args_parser)
   model = HRNet_W48_OCR(configer)
 
