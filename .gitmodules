@@ -7,3 +7,6 @@
 [submodule "models/HRNet_OCR/hrnetocr_git_submodule"]
 	path = models/HRNet_OCR/hrnetocr_git_submodule
 	url = https://github.com/shampooma/openseg.pytorch.git
+[submodule "models/Swin/Swin_git_submodule"]
+	path = models/Swin/Swin_git_submodule
+	url = https://github.com/shampooma/Swin-Transformer.git
